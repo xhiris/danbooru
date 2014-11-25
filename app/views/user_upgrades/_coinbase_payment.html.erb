@@ -1,0 +1,6 @@
+<% if CurrentUser.user.level < User::Levels::GOLD %>
+  <%= raw coinbase.create_button("Upgrade to Gold", 20.to_money("USD"), "Upgrade your Basic Account to a Gold Account", encrypt_custom(User::Levels::GOLD), :button => {:style => "custom_small", :text => "Upgrade to Gold"}).embed_html %>
+  <%= raw coinbase.create_button("Upgrade to Platinum", 40.to_money("USD"), "Upgrade your Basic Account to a Platinum Account", encrypt_custom(User::Levels::PLATINUM), :button => {:style => "custom_small", :text => "Upgrade to Platinum"}).embed_html %>
+<% elsif CurrentUser.level < User::Levels::PLATINUM %>
+  <%= raw coinbase.create_button("Upgrade to Platinum", 20.to_money("USD"), "Upgrade your Gold Account to a Platinum Account", encrypt_custom(User::Levels::PLATINUM), :button => {:style => "custom_small", :text => "Upgrade to Platinum"}).embed_html %>
+<% end %>

@@ -230,6 +230,23 @@ class Upload < ActiveRecord::Base
       FileUtils.chmod(0664, output_path)
     end
 
+    def generate_flash_preview_for(width, height, output_path, quality)
+      Dir.mktmpdir do |tmpdir|
+        temp_path = "#{tmpdir}/#{md5}.png"
+        gnash_out, status = Open3.capture2e("gnash -s1 --screenshot=1 --screenshot-file=#{temp_path} --max-advances 1 -r1 --timeout 10 #{file_path}")
+        if !status.success?
+          Rails.logger.error "[flash_preview] ******************************"
+          Rails.logger.error "[flash_preview] failed file_path=#{file_path}"
+          Rails.logger.error "[flash_preview] gnash output:"
+          gnash_out.split(/\n/).each do |line|
+            Rails.logger.error "[flash_preview] #{line}"
+          end
+        end
+
+        Danbooru.resize(temp_path, output_path, width, height, quality)
+      end
+    end
+
     def generate_resize_for(width, height, source_path, quality = 90)
       unless File.exists?(source_path)
         raise Error.new("file not found")
@@ -247,6 +264,8 @@ class Upload < ActiveRecord::Base
         end
       elsif is_video?
         generate_video_preview_for(width, height, output_path)
+      elsif is_flash?
+        generate_flash_preview_for(width, height, output_path, quality)
       end
     end
   end

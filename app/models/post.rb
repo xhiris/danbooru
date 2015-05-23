@@ -160,7 +160,7 @@ class Post < ActiveRecord::Base
     end
 
     def has_preview?
-      is_image? || is_video? || is_ugoira?
+      is_image? || is_video? || is_ugoira? || is_flash?
     end
 
     def has_dimensions?

@@ -16,7 +16,7 @@ private
     end
 
     if File.stat(secret_token_path).world_readable? || File.stat(secret_token_path).world_writable?
-      raise "#{secret_token_path} must not be world readable or writable"
+      raise "#{secret_token_path} must not be world readable or writable" + "\n" + File.stat(secret_token_path).inspect
     end
   end
 

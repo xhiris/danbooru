@@ -71,4 +71,5 @@ end
 group :development do
   gem 'ruby-prof'
   # gem 'sql-logging'
+  gem 'gctools', :platforms => :ruby
 end

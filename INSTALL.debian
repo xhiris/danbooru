@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Run: curl -s https://raw.githubusercontent.com/r888888888/danbooru/master/INSTALL.debian > install.sh ; chmod +x install.sh ; ./install.sh
+# Run: curl -s https://raw.githubusercontent.com/xhiris/danbooru/master/INSTALL.debian > install.sh ; chmod +x install.sh ; ./install.sh
 
 if [[ "$(whoami)" != "root" ]] ; then
   echo "You must run this script as root"

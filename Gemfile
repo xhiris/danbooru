@@ -53,6 +53,7 @@ gem 'twitter'
 gem 'aws-sdk', '~> 2'
 gem 'responders'
 gem 'highline'
+gem 'gctools', :platforms => :ruby
 
 # needed for looser jpeg header compat
 gem 'ruby-imagespec', :require => "image_spec", :git => "https://github.com/r888888888/ruby-imagespec.git", :branch => "exif-fixes"
@@ -70,6 +71,5 @@ end
 
 group :development do
   gem 'ruby-prof'
-  # gem 'sql-logging'
-  gem 'gctools', :platforms => :ruby
+  # gem 'sql-logging'  
 end

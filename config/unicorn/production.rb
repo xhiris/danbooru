@@ -9,7 +9,7 @@ timeout 180
 listen "127.0.0.1:9000"
 
 # Spawn unicorn master worker for user apps (group: apps)
-user 'albert', 'albert'
+user 'danbooru', 'danbooru'
 
 # Fill path to your app
 working_directory app_path
@@ -18,8 +18,8 @@ working_directory app_path
 rails_env = ENV['RAILS_ENV'] || 'production'
 
 # Log everything to one file
-stderr_path "/dev/null"
-stdout_path "/dev/null"
+stderr_path "log/unicornprod.log"
+stdout_path "log/unicornprod.log"
 
 # Set master PID location
 pid "#{app_path}/tmp/pids/unicorn.pid"
